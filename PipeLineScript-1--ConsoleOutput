@@ -1,0 +1,67 @@
+Started by user ShaikShafi
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/project-CI-CD
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] echo
+Checking out source code...
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/ShafiShaik8888/portfolioTemplate.git
+ > git init /var/lib/jenkins/workspace/project-CI-CD # timeout=10
+Fetching upstream changes from https://github.com/ShafiShaik8888/portfolioTemplate.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.40.1'
+ > git fetch --tags --force --progress -- https://github.com/ShafiShaik8888/portfolioTemplate.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/ShafiShaik8888/portfolioTemplate.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision d003cf2b5296d7ea58b957faa5929e23813d3a04 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f d003cf2b5296d7ea58b957faa5929e23813d3a04 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b master d003cf2b5296d7ea58b957faa5929e23813d3a04 # timeout=10
+Commit message: "Merge pull request #12 from Arshdeep-13/master"
+ > git rev-list --no-walk d003cf2b5296d7ea58b957faa5929e23813d3a04 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] echo
+Building...
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] echo
+Deploying...
+[Pipeline] sh
++ cp -r README.md 'SAMPLE README.md' css fonts img index.html js /var/www/html/
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+Cleaning up...
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] echo
+Pipeline succeeded!
+[Pipeline] mail
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
