@@ -1,4 +1,6 @@
 # PipeLine Script for Deployment
+#install Apache "sudo yum install httpd" 
+#start Apache "sudo systemctl start httpd"
 
 pipeline {
     agent any
