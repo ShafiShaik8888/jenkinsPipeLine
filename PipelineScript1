@@ -1,0 +1,48 @@
+# PipeLine Script for Deployment
+
+pipeline {
+    agent any
+    environment {
+        DEPLOY_PATH = '/var/www/html'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code...'
+                git 'https://github.com/ShafiShaik8888/portfolioTemplate.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Add build steps if necessary, e.g., npm install and build for frontend frameworks
+                // sh 'npm install'
+                // sh 'npm run build'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                sh "cp -r * ${DEPLOY_PATH}/"
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Cleaning up...'
+            cleanWs()
+        }
+        success {
+            echo 'Pipeline succeeded!'
+            mail to: 'shafishaik09876@gmail.com ',
+                 subject: 'Pipeline Success',
+                 body: "Good news! The pipeline  completed successfully."
+        }
+        failure {
+            echo 'Pipeline failed!'
+            mail to: 'shafishaik09876@gmail.com ',
+                 subject: 'Pipeline Failure',
+                 body: "Unfortunately, the pipeline  failed. Please check the Jenkins logs for more details."
+        }
+    }
+}
