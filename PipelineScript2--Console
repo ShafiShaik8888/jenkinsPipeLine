@@ -1,0 +1,88 @@
+Started by user ShaikShafi
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/DockerSha
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] echo
+Checking out source code...
+[Pipeline] checkout
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/DockerSha/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/ShafiShaik8888/Docker.git # timeout=10
+Fetching upstream changes from https://github.com/ShafiShaik8888/Docker.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.40.1'
+ > git fetch --tags --force --progress -- https://github.com/ShafiShaik8888/Docker.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision a36dbbe62d9952f85fdf71336f0e94eb08ff4962 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a36dbbe62d9952f85fdf71336f0e94eb08ff4962 # timeout=10
+Commit message: "Update and rename Dockerfile.txt to Dockerfile"
+ > git rev-list --no-walk a36dbbe62d9952f85fdf71336f0e94eb08ff4962 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+Building Docker image...
+[Pipeline] sh
++ docker build -t website .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 88B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/httpd:2.4
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/httpd:2.4@sha256:932ac36fabe1d2103ed3edbe66224ed2afe0041b317bcdb6f5d9be63594f0030
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 13.84kB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/2] COPY . /usr/local/apache2/htdocs/
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 writing image sha256:442d017643a4770da3939eefacfe8a4f0a86be1ae3650edd627eff91c425a0a2 done
+#7 naming to docker.io/library/website done
+#7 DONE 0.0s
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run Docker Container)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+Running Docker container...
+[Pipeline] sh
++ docker run -dit --name dockerContainer -p 8081:80 website
+2ae11bc0618694f4663c167c15c69cab5b06bded0a73a4d9e26f4db80eb31b16
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
